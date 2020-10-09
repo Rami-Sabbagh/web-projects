@@ -1,4 +1,25 @@
 {
-    "display": "browser",
+    "short_name": "Calculator",
+    "name": "Calculator: yet another calculator...",
+    "description": "A standard calculator.",
+    "icons": [
+        {
+            "src": "/calculator/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/calculator/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+
+    "start_url": "/calculator/",
+    "background_color": "#757575",
+    "display": "standalone",
+    "scope": "/calculator/",
+    "theme_color": "#757575",
+
     "orientation": "portrait"
 }
