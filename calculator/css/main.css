@@ -1,0 +1,213 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+
+    padding: 0;
+    margin: 0;
+}
+
+/*
+Application Container
+*/
+
+.app-container {
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    color: #ffffff; /* Text on P */
+    background-color: #757575; /* P */
+}
+
+/*
+Application Title
+*/
+
+.app-title {
+    padding: 25px;
+
+    font-weight: 500; /* Medium */
+    font-size: 20px;
+    letter-spacing: 0.15px;
+
+    background-color: #494949; /* P-Dark */
+
+    box-shadow: 0 0px 8px 0px #000000;
+    z-index: 1;
+}
+
+/*
+Calculator Display
+*/
+
+.calculator-display {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.secondary-display {
+    flex-grow: 1;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: right;
+    
+    font-weight: 400; /* Regular */
+    font-size: 20px;
+    letter-spacing: 0;
+    
+    padding-right: 20px;
+    
+    color: #ffffffaa;
+}
+
+.main-display {
+    flex-grow: 1;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: right;
+    
+    font-weight: 400; /* Regular */
+    font-size: 52px;
+    letter-spacing: 0;
+    
+    padding-right: 20px;
+}
+
+/*
+Calculator Memory Bar
+*/
+
+.memory-bar {
+    display: flex;
+}
+
+.memory-bar > button {
+    flex-grow: 1;
+    
+    cursor: pointer;
+    color: #ffffffee; /* Text on P */
+    
+    font-weight: 400; /* Medium */
+    font-size: 18px;
+    letter-spacing: 1.25px;
+    
+    padding: 10px;
+    
+    border-style: none;
+    border-radius: 5px;
+    background-color: transparent;
+    
+    transition-duration: 50ms;
+}
+
+.memory-bar > button:hover {
+    color: #ffffffff; /* Text on P */
+    background-color: #6d6d6d; /* S-Dark */
+}
+
+.memory-bar > button:active {
+    color: #ffffffaa;
+    background-color: #424242; /* S */
+    transition-duration: 100ms;
+}
+
+/*
+Calculator Input Pad
+*/
+
+.input-pad {
+    flex-grow: 2;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 2px;
+    padding: 2px;
+
+    border-width: 1px;
+    border-style: none;
+}
+
+.input-pad > button {
+    cursor: pointer;
+
+    color: #ffffff; /* Text on P */
+
+    font-weight: 500; /* Medium */
+    font-size: 20px;
+    letter-spacing: 1.25px;
+    
+    border-style: solid;
+    border-width: 2px;
+    border-color: #424242; /* S */
+
+    background-color: #424242; /* S */
+
+    transition-duration: 50ms;
+}
+
+.input-pad > button.equal {
+    border-color: #fdd835; /* Yellow 600 */
+    background-color: #f9a825; /* Yellow 800 */
+}
+
+.input-pad > button.primary {
+    background-color: #1b1b1b; /* S-Dark */
+}
+
+.input-pad > button:hover {
+    border-color: #42424288; /* S */
+    background-color: #6d6d6d; /* S-Light */
+}
+
+.input-pad > button.primary:hover {
+    background-color: #494949; /* P-Light */
+}
+
+.input-pad > button.equal:hover {
+    border-color: #f9a825; /* Yellow 800 */
+    background-color: #fbc02d; /* Yellow 700 */
+}
+
+.input-pad > button:active, .input-pad > button.primary:active {
+    background-color: #a4a4a4; /* P-Light */
+    border-color: #a4a4a4; /* P-Light */
+    transition-duration: 100ms;
+}
+
+.input-pad > button.equal:active {
+    border-color: #fdd835; /* Yellow 600 */
+    background-color: #fdd835; /* Yellow 600 */
+    transition-duration: 100ms;
+}
+
+/*
+Responsive Control
+*/
+
+@media screen and (min-aspect-ratio: 9/8) {
+    main {
+        display: flex;
+        height: 100vh;
+
+        align-items: center;
+        justify-content: center;
+
+        background-color: #eeeeee;
+    }
+
+    .app-container {
+        width: 48vh;
+        height: 80vh;
+        box-shadow: 0 10px 30px #444444;
+    }
+}

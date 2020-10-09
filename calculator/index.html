@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Standard calculator design">
+
+    <title>Calculator</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <main>
+        <div class="app-container">
+            <div class="app-title">
+                Standard Calculator
+            </div>
+
+            <div class="calculator-display">
+
+                <div class="secondary-display">
+                    4+1=
+                </div>
+
+                <div class="main-display">
+                    5
+                </div>
+
+                <div class="memory-bar">
+                    <button>MC</button>
+                    <button>MR</button>
+                    <button>M+</button>
+                    <button>M-</button>
+                    <button>MS</button>
+                </div>
+            </div>
+
+            <div class="input-pad">
+                <button>
+                    <!-- Percent -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor"
+                            d="M18.5,3.5L3.5,18.5L5.5,20.5L20.5,5.5M7,4A3,3 0 0,0 4,7A3,3 0 0,0 7,10A3,3 0 0,0 10,7A3,3 0 0,0 7,4M17,14A3,3 0 0,0 14,17A3,3 0 0,0 17,20A3,3 0 0,0 20,17A3,3 0 0,0 17,14Z" />
+                    </svg>
+                </button>
+                <button>CE</button>
+                <button>C</button>
+                <button>
+                    <!-- Backspace -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(-2, 3)">
+                        <path fill="currentColor"
+                            d="M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12L19,15.59M22,3A2,2 0 0,1 24,5V19A2,2 0 0,1 22,21H7C6.31,21 5.77,20.64 5.41,20.11L0,12L5.41,3.88C5.77,3.35 6.31,3 7,3H22M22,5H7L2.28,12L7,19H22V5Z" />
+                    </svg>
+                </button>
+                <button><sup>1</sup>/<sub>x</sub></button>
+                <button>
+                    <!-- x^2 -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor"
+                            d="M16,7.41L11.41,12L16,16.59L14.59,18L10,13.41L5.41,18L4,16.59L8.59,12L4,7.41L5.41,6L10,10.59L14.59,6L16,7.41M21.85,9H16.97V8L17.86,7.18C18.62,6.54 19.18,6 19.56,5.55C19.93,5.11 20.12,4.7 20.13,4.32C20.14,4.04 20.05,3.8 19.86,3.62C19.68,3.43 19.39,3.34 19,3.33C18.69,3.34 18.42,3.4 18.16,3.5L17.5,3.89L17.05,2.72C17.32,2.5 17.64,2.33 18.03,2.19C18.42,2.05 18.85,2 19.32,2C20.1,2 20.7,2.2 21.1,2.61C21.5,3 21.72,3.54 21.72,4.18C21.71,4.74 21.53,5.26 21.18,5.73C20.84,6.21 20.42,6.66 19.91,7.09L19.27,7.61V7.63H21.85V9Z" />
+                    </svg>
+                </button>
+                <button>
+                    <!-- Square root -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor"
+                            d="M11.76,16.83L14.59,14L11.76,11.17L13.17,9.76L16,12.59L18.83,9.76L20.24,11.17L17.41,14L20.24,16.83L18.83,18.24L16,15.41L13.17,18.24L11.76,16.83M2,11H5V11H5L7.29,16.4L10,6H22V8H11.55L8.68,19H6.22L3.68,13H2V11Z" />
+                    </svg>
+                </button>
+                <button>
+                    <!-- Division -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor"
+                            d="M19,13H5V11H19V13M12,5A2,2 0 0,1 14,7A2,2 0 0,1 12,9A2,2 0 0,1 10,7A2,2 0 0,1 12,5M12,15A2,2 0 0,1 14,17A2,2 0 0,1 12,19A2,2 0 0,1 10,17A2,2 0 0,1 12,15Z" />
+                    </svg>
+                </button>
+                <button class="primary">7</button>
+                <button class="primary">8</button>
+                <button class="primary">9</button>
+                <button>
+                    <!-- Multiplication -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor"
+                            d="M11,3H13V10.27L19.29,6.64L20.29,8.37L14,12L20.3,15.64L19.3,17.37L13,13.72V21H11V13.73L4.69,17.36L3.69,15.63L10,12L3.72,8.36L4.72,6.63L11,10.26V3Z" />
+                    </svg>
+                </button>
+                <button class="primary">4</button>
+                <button class="primary">5</button>
+                <button class="primary">6</button>
+                <button>
+                    <!-- Subtraction -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor" d="M19,13H5V11H19V13Z" />
+                    </svg>
+                </button>
+                <button class="primary">1</button>
+                <button class="primary">2</button>
+                <button class="primary">3</button>
+                <button>
+                    <!-- Addition -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                    </svg>
+                </button>
+                <button class="primary">
+                    <!-- +/- -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor"
+                            d="M3 7H6V4H8V7H11V9H8V12H6V9H3V7M13 15H21V17H13V15M16.04 3H18.35L7.96 21H5.65L16.04 3Z" />
+                    </svg>
+                </button>
+                <button class="primary">0</button>
+                <button class="primary">.</button>
+                <button class="equal">
+                    <!-- Equal -->
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24" transform="translate(0,3)">
+                        <path fill="currentColor" d="M19,10H5V8H19V10M19,16H5V14H19V16Z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
