@@ -60,10 +60,15 @@
 
     for (let event of ["pointercancel", "pointerup", "pointermove", "pointerdown"]) {
         window.addEventListener(event, function (ev) {
-            if (ev.type == "pointermove") ev.preventDefault(); //Prevent the pinch handler from acting
             if (pointers.isDown(ev.pointerId)) {
                 paint(ev);
             }
         });
+    }
+
+    window.ontouchstart = function(event) {
+        if (event.touches.length > 1) {
+            event.preventDefault(); //Prevent touch gestures.
+        }
     }
 }
