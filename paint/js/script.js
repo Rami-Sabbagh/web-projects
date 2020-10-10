@@ -60,7 +60,7 @@
 
     for (let event of ["pointercancel", "pointerup", "pointermove", "pointerdown"]) {
         window.addEventListener(event, function (ev) {
-            if (pointers.isDown(ev.pointerId)) {
+            if (pointers.isDown(ev.pointerId) || ev.pointerType === "touch") {
                 paint(ev);
             }
         });
