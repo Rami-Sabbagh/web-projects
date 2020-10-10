@@ -50,12 +50,17 @@
 
         ctx.beginPath();
         ctx.moveTo(ev.x, ev.y);
-        ctx.lineTo(ev.x - ev.movementX, ev.y - ev.movementY);
+        if (ev.pointerType === "touch") {
+            ctx.lineTo(ev.x, ev.y);
+        } else {
+            ctx.lineTo(ev.x - ev.movementX, ev.y - ev.movementY);
+        }
         ctx.stroke();
     }
 
     for (let event of ["pointercancel", "pointerup", "pointermove", "pointerdown"]) {
         window.addEventListener(event, function (ev) {
+            if (ev.type == "pointermove") ev.preventDefault(); //Prevent the pinch handler from acting
             if (pointers.isDown(ev.pointerId)) {
                 paint(ev);
             }
