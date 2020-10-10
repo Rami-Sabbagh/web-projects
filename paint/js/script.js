@@ -66,7 +66,9 @@
         });
     }
 
-    window.ontouchstart = function(event) {
+    window.ontouchstart = window.ontouchmove = window.ontouchend = window.ontouchcancel = function(event) {
         event.preventDefault(); //Prevent touch gestures.
     }
+
+    
 }
