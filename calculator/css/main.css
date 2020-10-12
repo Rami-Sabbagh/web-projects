@@ -46,14 +46,14 @@ Calculator Display
 */
 
 .calculator-display {
-    flex-grow: 1;
+    flex: 1;
 
     display: flex;
     flex-direction: column;
 }
 
 .secondary-display {
-    flex-grow: 1;
+    flex: 1 24px;
 
     display: flex;
     align-items: flex-end;
@@ -69,7 +69,7 @@ Calculator Display
 }
 
 .main-display {
-    flex-grow: 1;
+    flex: 1 62.4px;
 
     display: flex;
     align-items: flex-start;
@@ -91,7 +91,7 @@ Calculator Memory Bar
 }
 
 .memory-bar > button {
-    flex-grow: 1;
+    flex: 1;
     
     cursor: pointer;
     color: #ffffffee; /* Text on P */
@@ -125,7 +125,7 @@ Calculator Input Pad
 */
 
 .input-pad {
-    flex-grow: 2;
+    flex: 2;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
