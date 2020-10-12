@@ -45,7 +45,10 @@
 
     function paint(ev) {
         ctx.strokeStyle = "white";
-        ctx.lineWidth = 25 * ev.pressure;
+        ctx.lineWidth = 25;
+        if (ev.pointerType === "pen") {
+          ctx.lineWidth = 25 * ev.pressure;
+        }
         ctx.lineCap = "round";
 
         ctx.beginPath();
