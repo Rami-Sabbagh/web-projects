@@ -28,15 +28,16 @@
 
             ctx.strokeStyle = "#aaaaaa";
             ctx.lineWidth = 3;
-            ctx.beginPath();
 
             for (let pointerId in this.pointers) {
                 let pointer = this.pointers[pointerId];
                 if (pointer === undefined) continue;
+
+                ctx.beginPath();
                 ctx.arc(pointer[0], pointer[1], brushRadius, 0, 2*Math.PI);
+                ctx.stroke();
             }
 
-            ctx.stroke();
             this.pointersChanged = false;
         },
 
