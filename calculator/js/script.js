@@ -7,7 +7,7 @@ let inputPadButtonsIds = [
     "percent", "ce", "c", "backspace",
     "inverse", "square", "square_root", "divide",
     "num_7", "num_8", "num_9", "multiply",
-    "num_4", "num_5", "num_6", "substract",
+    "num_4", "num_5", "num_6", "subtract",
     "num_1", "num_2", "num_3", "add",
     "invert", "num_0", "period", "calculate"
 ];
