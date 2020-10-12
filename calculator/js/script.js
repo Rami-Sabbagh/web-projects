@@ -25,6 +25,7 @@ let inputPadKeyboardMapping = {
     "+": "add",
     "=": "calculate", "Enter": "calculate",
     "Backspace": "backspace",
+    "Delete": "ce",
     "r": "inverse", "R": "inverse",
     "q": "square_root", "Q": "square_root"
 }
