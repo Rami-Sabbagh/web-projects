@@ -7,7 +7,7 @@ Snake V1.0.0:
         ☐ Create the start screen.
         ☐ Add the option to pause the game.
         ☐ Create the help screen.
-        ☐ Cleanup the JavaScript code.
+        ☐ Cleanup the JavaScript code. @started(20-10-30 18:34)
     
     Recommended:
         ☐ Use webpack to pack the game's modules into a single file.
@@ -15,6 +15,7 @@ Snake V1.0.0:
     
     Simple but optional:
         ☐ Make some text unselectable.
+        ☐ Add a statistic into the death screen: "You filled 30% of the game's screen".
     
     Socializing Process:
         ☐ Design the post in Instagram.
