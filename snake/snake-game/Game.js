@@ -83,7 +83,7 @@ export default class Game {
     //Spawns/Respawns the game's snake.
     spawnSnake() {
         this._snake.respawn(
-            Math.floor((this._tileMap.width - this.startingSnakeLength)/2),
+            Math.floor((this._tileMap.width + this.startingSnakeLength)/2),
             Math.floor(this._tileMap.height/2),
             this.startingSnakeLength
         );
