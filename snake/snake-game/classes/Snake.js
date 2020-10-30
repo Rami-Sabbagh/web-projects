@@ -27,20 +27,15 @@ export default class Snake {
 
     //==-- Contructor --==//
 
-    //- tileMap (TileMap): The map to spawn the snake in.
-    //- x (Number): The x coordinates to spawn the snake's head at.
-    //- y (Number): The y coordinates to spawn the snake's head at.
-    //- length(Number): The initial length of the snake, defaults to (5).
-    constructor(tileMap, x, y, length) {
+    //- tileMap (TileMap): The map which the snake belongs to.
+    constructor(tileMap) {
         this._tileMap = tileMap;
-
-        this.respawn(x, y, length);
-        this.resume();
     }
 
     //==-- Getters and Setters --==//
 
     get length() { return this._pieces.length; }
+    get spawned() { return this._pieces.length !== 0; }
 
     get direction() { return this._lastMovementDirection; }
     set direction(value) { if ((this._lastMovementDirection + value) % 2 === 1) { this._direction = value; } }
@@ -72,6 +67,8 @@ export default class Snake {
 
     //Destroys the snake and removes it from existance.
     destroy() {
+        this.pause(); //Make sure the snake is paused first.
+
         for (let piece in this._pieces) { this._tileMap.removeEntity(piece); }
         this._pieces.splice(0);
         this._grow = 0;
