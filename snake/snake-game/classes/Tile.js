@@ -1,17 +1,15 @@
 export default class Tile {
-    //Protected properties
+    //==-- Protected properties --==//
+
     _element = document.createElement("div");
 
-    //Constructor
-    constructor() {
+    //==-- Getters and Setters --==//
 
-    }
-
-    //Getters and Setters
     get element() {
         return this._element;
     }
 
+    // The entity occuping this tile.
     get entity() {
         return this._entity;
     }
