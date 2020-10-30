@@ -1,4 +1,3 @@
-import Fruit from './Fruit.js';
 import SnakePiece from './SnakePiece.js';
 
 let movementVectors = [
@@ -8,111 +7,141 @@ let movementVectors = [
     [-1, 0], //3: left
 ];
 
-let keyboardBindings = {
-    ArrowUp: 0,
-    ArrowRight: 1,
-    ArrowDown: 2,
-    ArrowLeft: 3,
-
-    w: 0, W: 0,
-    d: 1, D: 1,
-    s: 2, S: 2,
-    a: 3, A: 3
-}
-
 export default class Snake {
-    _dead = false;
+    //==-- Private properties --==//
+
+    _tileMap = undefined;
     _pieces = [];
-    _growNextTick = false;
-    _tickIntervalHandle = undefined;
-    _directionNextTick = undefined;
 
-    constructor(tileMap, onFruitConsumed, onDeath, x, y, length = 5) {
-        this.tileMap = tileMap;
-        this.onFruitConsumed = onFruitConsumed;
-        this.onDeath = onDeath;
+    _headX = undefined;
+    _headY = undefined;
 
-        this.headX = x;
-        this.headY = y;
+    _direction = undefined; //0: top, 1: right, 2: bottom, 3: left
+    _lastMovementDirection = undefined;
 
-        this.direction = 1; //0: top, 1: right, 2: bottom, 3: left
+    _movementInterval = undefined;
+    _movementHandler = this.move.bind(this);
+    _movementTimeout = 200;
 
-        //Construct the snake pieces
+    _grow = 0;
+
+    //==-- Contructor --==//
+
+    //- tileMap (TileMap): The map to spawn the snake in.
+    //- x (Number): The x coordinates to spawn the snake's head at.
+    //- y (Number): The y coordinates to spawn the snake's head at.
+    //- length(Number): The initial length of the snake, defaults to (5).
+    constructor(tileMap, x, y, length) {
+        this._tileMap = tileMap;
+
+        this.respawn(x, y, length);
+        this.resume();
+    }
+
+    //==-- Getters and Setters --==//
+
+    get length() { return this._pieces.length; }
+
+    get direction() { return this._lastMovementDirection; }
+    set direction(value) { if ((this._lastMovementDirection + value) % 2 === 1) { this._direction = value; } }
+
+    //==-- Callbacks --==//
+
+    //Called when the snake dies (when die() is called).
+    onDeath() { }
+
+    //==-- Methods --==//
+
+    //- x (Number): The x coordinates to spawn the snake's head at.
+    //- y (Number): The y coordinates to spawn the snake's head at.
+    //- length(Number): The initial length of the snake, defaults to (5).
+    respawn(x, y, length = 5) {
+        if (this.length !== 0) { this.destroy(); }
+
         for (let i = 0; i < length; i++) {
             let piece = new SnakePiece();
             this._pieces.push(piece);
-            this.tileMap.addEntity(piece, x - i, y);
+            this._tileMap.addEntity(piece, x - i, y);
         }
 
-        this._tickIntervalHandle = setInterval(this.ontick.bind(this), 200);
-        document.addEventListener("keydown", this.onkeydown.bind(this));
+        this._headX = x;
+        this._headY = y;
+        this._direction = 1;
+        this._lastMovementDirection = 1;
     }
 
-    get length() {
-        return this._pieces.length;
+    //Destroys the snake and removes it from existance.
+    destroy() {
+        for (let piece in this._pieces) { this._tileMap.removeEntity(piece); }
+        this._pieces.splice(0);
+        this._grow = 0;
+
+        this._headX = undefined;
+        this._headY = undefined;
+        this._direction = undefined;
+        this._lastMovementDirection = undefined;
     }
 
-    move() {
-        let shouldGrow = this._growNextTick;
-        this._growNextTick = false;
+    //Resumes the snake's movement.
+    resume() {
+        if (this._pieces.length === 0) { throw new Error("Can't resume the snake's movement while it's not in existance (respawn it first)."); }
+        //If it was already active, pause it, and reactivate it (so the interval timeout is updated).
+        if (this._movementInterval !== undefined) { this.pause(); }
 
-        if (this._directionNextTick !== undefined) {
-            this.direction = this._directionNextTick;
-            this._directionNextTick = undefined;
-        }
+        //Make sure the head piece is in place (can be not in the map when resuming after death).
+        this._tileMap.addEntity(this._pieces[0], this._headX, this._headY);
 
-        let piece;
-        if (shouldGrow) {
-            piece = new SnakePiece();
-            this._pieces.unshift(piece);
-        } else {
-            piece = this._pieces.pop();
-            this._pieces.unshift(piece);
-            this.tileMap.removeEntity(piece);
-        }
-
-        let vector = movementVectors[this.direction];
-        let vectorX = vector[0], vectorY = vector[1];
-
-        this.headX += vectorX, this.headY += vectorY;
-        if (this.headX < 0) { this.headX = this.tileMap.width - 1 }
-        if (this.headY < 0) { this.headY = this.tileMap.height - 1 }
-        this.headX %= this.tileMap.width, this.headY %= this.tileMap.height;
-
-        let consumed = this.tileMap.getEntity(this.headX, this.headY);
-        if (consumed) {
-            if (consumed instanceof Fruit) {
-                this._growNextTick = true;
-                this.onFruitConsumed();
-            } else {
-                this.die();
-            }
-        }
-
-        this.tileMap.addEntity(piece, this.headX, this.headY);
+        this._movementInterval = setInterval(this._movementHandler, this._movementTimeout);
     }
 
-    ontick() {
-        this.move();
+    //Pauses the snake's movement.
+    pause() {
+        //Already not active / paused.
+        if (this._movementInterval === undefined) { return; }
+
+        clearInterval(this._movementInterval);
+        this._movementInterval = undefined;
     }
 
-    onkeydown(ev) {
-        let direction = keyboardBindings[ev.key];
-
-        if (direction !== undefined) {
-            if ((this.direction + direction) % 2) {
-                this._directionNextTick = direction;
-            }
-        }
-    }
-
+    //Kills the snake, by pausing it, and calling the onDeath callback.
     die() {
-        this._dead = true;
-        if (this._tickIntervalHandle !== undefined) {
-            clearInterval(this._tickIntervalHandle);
-            this._tickIntervalHandle = undefined;
+        this.pause();
+        this.onDeath();
+    }
+
+    //Tells the snake to grow by a specific amount, takes the same amount of movements to be applied.
+    //(Takes 2 movements to grow by 2, etc...).
+    grow(amount=1) { this._grow += amount; }
+
+    //Makes the snake move by a single step.
+    move() {
+        this._lastMovementDirection = this._direction;
+
+        let headPiece;
+        if (this._grow > 0) {
+            headPiece = new SnakePiece();
+            this._grow--;
+        } else {
+            headPiece = this._pieces.pop();
+            this._tileMap.removeEntity(headPiece);
+        }
+        this._pieces.unshift(headPiece);
+
+        let movementVector = movementVectors[this._direction];
+        let movementVectorX = movementVector[0];
+        let movementVectorY = movementVector[1];
+
+        this._headX += movementVectorX, this._headY += movementVectorY;
+        if (this._headX < 0) { this._headX = this._tileMap.width - 1 }
+        if (this._headY < 0) { this._headY = this._tileMap.height - 1 }
+        this._headX %= this._tileMap.width, this._headY %= this._tileMap.height;
+
+        let entityToConsume = this._tileMap.getEntity(this._headX, this._headY);
+        if (entityToConsume && entityToConsume.consumed(this)) {
+            this.die(); //Consumtion rejected, the snake shall die now because it can't move.
+            return; //Prevent the entity from being consumed, although it would be forcibaly consumed when the snake resumes (if revived).
         }
 
-        this.onDeath();
+        this._tileMap.addEntity(headPiece, this._headX, this._headY);
     }
 }
