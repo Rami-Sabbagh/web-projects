@@ -6,13 +6,11 @@ export default class Game {
     _timer = 0;
     _timerHandle = undefined;
 
-    constructor(width = 100, height = 100, initialFruits = 5) {
+    constructor(width = 30, height = 20, initialFruits = 5) {
         this.tileMap = new TileMap(width, height);
 
-        this.snake = new Snake(this.tileMap, this.onFruitConsumed.bind(this), this.onDeath.bind(this),
-            Math.floor(width / 2) + 2,
-            Math.floor(height / 2)
-        );
+        this.snake = new Snake(this.tileMap, Math.floor(width / 2) + 2, Math.floor(height / 2));
+        this.snake.onDeath = this.onDeath.bind(this);
 
         for (let i = 0; i < initialFruits; i++) {
             this.spawnNewFruit();
@@ -26,7 +24,16 @@ export default class Game {
 
         document.querySelector(".game-over .restart").addEventListener("click", ev => {
             document.querySelector(".game-over").classList.remove("active");
-            alert("Work in progress");
+            this.snake.destroy();
+            this.tileMap.clearEntities();
+            this.snake.respawn(Math.floor(width / 2) + 2, Math.floor(height / 2));
+
+            for (let i = 0; i < initialFruits; i++) {
+                this.spawnNewFruit();
+            }
+
+            this.snake.resume();
+            //TODO: Fix timer no longer working after restart
         });
     }
 
@@ -44,6 +51,7 @@ export default class Game {
         }
 
         let fruit = new Fruit();
+        fruit.onConsumtion = this.onFruitConsumed.bind(this);
         this.tileMap.addEntity(fruit, x, y);
     }
 
@@ -80,8 +88,8 @@ export default class Game {
         let overlay = document.querySelector(".game-over");
         let scoreDisplay = document.querySelector(".game-over .score");
 
-        scoreDisplay.innerHTML = `<b>Score:</b> ${this.snake.length.toString()} - <b>Timer:</b> ${this.formatTimer()}`;
-        
+        scoreDisplay.innerHTML = `<b>Score:</b> ${this.snake.length.toString()} - <b>Time:</b> ${this.formatTimer()}`;
+
         overlay.classList.add("active");
     }
 }
