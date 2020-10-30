@@ -7,7 +7,7 @@ Snake V1.0.0:
         ☐ Create the start screen.
         ☐ Add the option to pause the game.
         ☐ Create the help screen.
-        ☐ Cleanup the JavaScript code. @started(20-10-30 18:34)
+        ✔ Cleanup the JavaScript code. @started(20-10-30 18:34) @done(20-10-31 00:41) @lasted(6h7m39s)
     
     Recommended:
         ☐ Use webpack to pack the game's modules into a single file.
