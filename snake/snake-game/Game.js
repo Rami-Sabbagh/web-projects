@@ -23,6 +23,11 @@ export default class Game {
             this.updateTimerDisplay();
         }, 1000);
         this.updateScoreDisplay();
+
+        document.querySelector(".game-over .restart").addEventListener("click", ev => {
+            document.querySelector(".game-over").classList.remove("active");
+            alert("Work in progress");
+        });
     }
 
     get element() {
@@ -66,10 +71,17 @@ export default class Game {
     }
 
     onDeath() {
+        //Stop the game timer
         if (this._timerHandle !== undefined) {
             clearInterval(this._timerHandle);
             this._timerHandle = undefined;
         }
-        alert("YOU LOST!");
+
+        let overlay = document.querySelector(".game-over");
+        let scoreDisplay = document.querySelector(".game-over .score");
+
+        scoreDisplay.innerHTML = `<b>Score:</b> ${this.snake.length.toString()} - <b>Timer:</b> ${this.formatTimer()}`;
+        
+        overlay.classList.add("active");
     }
 }
