@@ -3,7 +3,7 @@ Snake V1.0.0:
 
     Essential:
         ✔ Create the death screen. @started(20-10-30 16:36) @done(20-10-30 17:41) @lasted(1h5m35s)
-        ☐ Allow to restart the game after death.
+        ✔ Allow to restart the game after death. @done(20-10-31 01:09)
         ☐ Create the start screen.
         ☐ Add the option to pause the game.
         ☐ Create the help screen.
