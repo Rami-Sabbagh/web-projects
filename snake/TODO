@@ -5,6 +5,21 @@ Snake V1.0.0:
         ✔ Create the death screen. @started(20-10-30 16:36) @done(20-10-30 17:41) @lasted(1h5m35s)
         ✔ Allow to restart the game after death. @done(20-10-31 01:09)
         ☐ Create the start screen.
+        ☐ Create a buttons toolbar.
+            Collect the icons:
+                ☐ A timer icon.
+                ☐ A pause icon.
+                ☐ Enable fullscreen icon.
+                ☐ Disable fullscreen icon.
+                ☐ A restart/reload icon.
+                ☐ A gear icon.
+                ☐ A question mark icon.
+            Implement the buttons:
+                ☐ A button for pausing the game.
+                ☐ A button for toggling fullscreen mode.
+                ☐ A button for explicatilly restarting the game.
+                ☐ A button for a settings menu (reconfigure controls).
+                ☐ A button for the help screen.
         ☐ Add the option to pause the game.
         ☐ Create the help screen.
         ✔ Cleanup the JavaScript code. @started(20-10-30 18:34) @done(20-10-31 00:41) @lasted(6h7m39s)
