@@ -7,21 +7,32 @@ Snake V1.0.0:
         ☐ Create the start screen.
         ☐ Create a buttons toolbar.
             Collect the icons:
-                ☐ A timer icon.
-                ☐ A pause icon.
-                ☐ Enable fullscreen icon.
-                ☐ Disable fullscreen icon.
-                ☐ A restart/reload icon.
-                ☐ A gear icon.
-                ☐ A question mark icon.
-            Implement the buttons:
+                ✔ A timer icon. @done(20-10-31 11:33)
+                ✔ A pause icon. @done(20-10-31 11:28)
+                ✔ A play icon. @done(20-10-31 11:29)
+                ✔ Enter fullscreen icon. @done(20-10-31 11:33)
+                ✔ Exit fullscreen icon. @done(20-10-31 11:33)
+                ✔ A restart/reload icon. @done(20-10-31 11:30)
+                ✔ A gear icon. @done(20-10-31 11:31)
+                ✔ A question mark icon. @done(20-10-31 11:32)
+            Place the buttons:
                 ☐ A button for pausing the game.
                 ☐ A button for toggling fullscreen mode.
                 ☐ A button for explicatilly restarting the game.
                 ☐ A button for a settings menu (reconfigure controls).
                 ☐ A button for the help screen.
-        ☐ Add the option to pause the game.
-        ☐ Create the help screen.
+            Implement the buttons:
+                ☐ Game pause screen.
+                    ☐ Design the pause screen.
+                    ☐ Implement the pause screen.
+                    ☐ Wire the pause button.
+                ☐ Fullscreen mode.
+                ☐ Restart button.
+                ☐ Help screen.
+                    ☐ Design the help screen.
+                    ☐ Implement the help screen.
+                    ☐ Wire the help button.
+                ☐ Settings screen.
         ✔ Cleanup the JavaScript code. @started(20-10-30 18:34) @done(20-10-31 00:41) @lasted(6h7m39s)
     
     Recommended:
