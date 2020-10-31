@@ -18,7 +18,7 @@ Snake V1.0.0:
             Place the buttons:
                 ☐ A button for pausing the game.
                 ☐ A button for toggling fullscreen mode.
-                ☐ A button for explicatilly restarting the game.
+                ☐ A button for explicatilly restarting the game. @started(20-10-31 19:26)
                 ☐ A button for a settings menu (reconfigure controls).
                 ☐ A button for the help screen.
             Implement the buttons:
@@ -56,3 +56,7 @@ Snake V1.0.0:
         ☐ Create a local highscores screen.
         ☐ Add darkmode support.
         ☐ Add mobile and touch support.
+    
+    Advanced:
+        ☐ Quick GIF recordings of the gameplay (a frame every tick).
+        ☐ Game replays.
