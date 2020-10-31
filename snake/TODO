@@ -16,18 +16,18 @@ Snake V1.0.0:
                 ✔ A gear icon. @done(20-10-31 11:31)
                 ✔ A question mark icon. @done(20-10-31 11:32)
             Place the buttons:
-                ☐ A button for pausing the game.
-                ☐ A button for toggling fullscreen mode.
-                ☐ A button for explicatilly restarting the game. @started(20-10-31 19:26)
-                ☐ A button for a settings menu (reconfigure controls).
-                ☐ A button for the help screen.
+                ✔ A button for pausing the game. @done(20-10-31 20:03)
+                ✔ A button for toggling fullscreen mode. @done(20-10-31 20:03)
+                ✔ A button for restarting the game. @done(20-10-31 20:03)
+                ✔ A button for a settings menu (reconfigure controls). @done(20-10-31 20:03)
+                ✔ A button for the help screen. @done(20-10-31 20:03)
             Implement the buttons:
                 ☐ Game pause screen.
                     ☐ Design the pause screen.
                     ☐ Implement the pause screen.
                     ☐ Wire the pause button.
                 ☐ Fullscreen mode.
-                ☐ Restart button.
+                ✔ Restart button. @started(20-10-31 19:26) @done(20-10-31 20:03) @lasted(37m34s)
                 ☐ Help screen.
                     ☐ Design the help screen.
                     ☐ Implement the help screen.
