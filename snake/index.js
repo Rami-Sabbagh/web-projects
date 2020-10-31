@@ -2,6 +2,9 @@ import Game from './snake-game/Game.js';
 import StandardKeyboardControls from './snake-game/StandardKeyboardControls.js';
 import Gamepad2Keyboard from './snake-game/Gamepad2Keyboard.js';
 
+let restartButton = document.querySelector(".game-bar .buttons-container .icon-reload");
+let fullscreenButton = document.querySelector(".game-bar .buttons-container .icon-fullscreen");
+
 let game = new Game(30, 20);
 
 let timer = new class Timer {
@@ -76,6 +79,25 @@ function startGame() {
     updateScoreDisplay();
 }
 
+//Toggles fullscreen mode.
+function toggleFullscreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        document.querySelector("html").requestFullscreen();
+    }
+}
+
+function updateFullscreenButton() {
+    if (document.fullscreenElement) {
+        fullscreenButton.classList.remove("icon-fullscreen");
+        fullscreenButton.classList.add("icon-fullscreen-exit");
+    } else {
+        fullscreenButton.classList.remove("icon-fullscreen-exit");
+        fullscreenButton.classList.add("icon-fullscreen");
+    }
+}
+
 game.onFruitConsumed = () => updateScoreDisplay(true); //we increase by 1 because the snake's length has not been updated yet at this call.
 game.onDeath = () => { timer.stop(); showDeathOverlay(); }
 
@@ -85,11 +107,15 @@ new Gamepad2Keyboard();
 let root = document.querySelector(".game-container");
 root.insertBefore(game.element, root.firstChild)
 
+if (document.fullscreenEnabled) { fullscreenButton.removeAttribute("disabled"); }
+document.onfullscreenchange = updateFullscreenButton;
+
 //==-- Toolbar buttons --//
-document.querySelector(".game-bar .buttons-container .icon-reload").onclick = startGame;
+restartButton.onclick = startGame;
+fullscreenButton.onclick = toggleFullscreen;
 
 //==-- Death screen --==//
-let restartButton = document.querySelector(".restart");
-restartButton.onclick = startGame;
+let deathRestartButton = document.querySelector(".restart");
+deathRestartButton.onclick = startGame;
 
 startGame();
