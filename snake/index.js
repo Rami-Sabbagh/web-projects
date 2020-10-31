@@ -85,6 +85,10 @@ new Gamepad2Keyboard();
 let root = document.querySelector(".game-container");
 root.insertBefore(game.element, root.firstChild)
 
+//==-- Toolbar buttons --//
+document.querySelector(".game-bar .buttons-container .icon-reload").onclick = startGame;
+
+//==-- Death screen --==//
 let restartButton = document.querySelector(".restart");
 restartButton.onclick = startGame;
 
