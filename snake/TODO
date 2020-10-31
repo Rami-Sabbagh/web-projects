@@ -59,6 +59,8 @@ Snake V1.0.0:
         ☐ Create a local highscores screen.
         ☐ Add darkmode support.
         ☐ Add mobile and touch support.
+        ☐ Add a win screen when the screen is filled with the snake.
+            ☐ When there is no empty space for a fruit, it shall not be spawned.
     
     Advanced:
         ☐ Quick GIF recordings of the gameplay (a frame every tick).
