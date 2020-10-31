@@ -4,12 +4,14 @@ import Gamepad2Keyboard from './snake-game/Gamepad2Keyboard.js';
 
 let restartButton = document.querySelector(".game-bar .buttons-container .icon-reload");
 let fullscreenButton = document.querySelector(".game-bar .buttons-container .icon-fullscreen");
+let pauseButton = document.querySelector(".game-bar .buttons-container .icon-pause");
 
 let game = new Game(30, 20);
 
 let timer = new class Timer {
     _timer = 0;
     _timerInterval = undefined;
+    _timerTimeout = 200;
 
     start() {
         this.reset();
@@ -18,7 +20,7 @@ let timer = new class Timer {
 
     resume() {
         if (this._timerInterval !== undefined) { return }
-        this._timerInterval = setInterval(this.tick.bind(this), 1000);
+        this._timerInterval = setInterval(this.tick.bind(this), this._timerTimeout);
     }
 
     pause() {
@@ -35,12 +37,12 @@ let timer = new class Timer {
     }
 
     tick() {
-        this._timer++;
+        this._timer += this._timerTimeout/1000;
         this.updateDisplay();
     }
 
     formatDisplay() {
-        let seconds = (this._timer % 60).toString();
+        let seconds = Math.floor(this._timer % 60).toString();
         let minutes = Math.floor(this._timer / 60).toString();
 
         if (seconds.length === 1) { seconds = "0" + seconds; }
@@ -77,6 +79,31 @@ function startGame() {
     timer.start();
     timer.updateDisplay();
     updateScoreDisplay();
+
+    if (document.querySelector(".game-paused.active")) {
+        game.pause();
+        timer.pause();
+    }
+}
+
+//Toggles the game's paused state.
+function toggleGamePause() {
+    let overlay = document.querySelector(".game-paused");
+    let active = overlay.classList.toggle("active");
+    
+    if (active) {
+        pauseButton.classList.remove("icon-pause");
+        pauseButton.classList.add("icon-play");
+
+        game.pause();
+        timer.pause();
+    } else {
+        pauseButton.classList.remove("icon-play");
+        pauseButton.classList.add("icon-pause");
+        
+        game.resume();
+        timer.resume();
+    }
 }
 
 //Toggles fullscreen mode.
@@ -113,6 +140,7 @@ document.onfullscreenchange = updateFullscreenButton;
 //==-- Toolbar buttons --//
 restartButton.onclick = () => { game.reset(); setTimeout(startGame, 200); };
 fullscreenButton.onclick = toggleFullscreen;
+pauseButton.onclick = toggleGamePause;
 
 //==-- Death screen --==//
 let deathRestartButton = document.querySelector(".restart");

@@ -36,6 +36,7 @@ export default class Snake {
 
     get length() { return this._pieces.length; }
     get spawned() { return this._pieces.length !== 0; }
+    get paused() { return this._movementInterval === undefined; }
 
     get direction() { return this._lastMovementDirection; }
     set direction(value) { if ((this._lastMovementDirection + value) % 2 === 1) { this._direction = value; } }

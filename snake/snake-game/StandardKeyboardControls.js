@@ -25,7 +25,7 @@ export default class StandardKeyboardControls {
     //==-- Methods --==//
 
     onkeydown(ev) {
-        if (ev.key in keyboardBindings) {
+        if (!this._snake.paused && ev.key in keyboardBindings) {
             this._snake.direction = keyboardBindings[ev.key];
         }
     }
