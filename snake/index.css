@@ -1,4 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto:wght@100;400;500&display=swap");
+.icon {
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+.icon-cog {
+  background-image: url("svg/cog.svg");
+  background-size: 60%;
+}
+.icon-fullscreen-exit {
+  background-image: url("svg/fullscreen-exit.svg");
+}
+.icon-fullscreen {
+  background-image: url("svg/fullscreen.svg");
+}
+.icon-help {
+  background-image: url("svg/help.svg");
+  background-size: 60%;
+}
+.icon-pause {
+  background-image: url("svg/pause.svg");
+}
+.icon-play {
+  background-image: url("svg/play.svg");
+}
+.icon-reload {
+  background-image: url("svg/reload.svg");
+  background-size: 70%;
+}
+.icon-timer-outline {
+  background-image: url("svg/timer-outline.svg");
+  background-size: 70%;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -35,8 +68,31 @@ body {
 .game-bar .score-label {
   flex: 1;
 }
+.game-bar .timer-label {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+}
 .game-bar .score-value, .game-bar .timer-value {
   font-weight: 400;
+}
+.game-bar .buttons-container {
+  display: flex;
+}
+.game-bar button {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #0000;
+  transition: 100ms;
+}
+.game-bar button:hover {
+  background-color: #0002;
+}
+.game-bar button:active {
+  background-color: #FFFB;
+  filter: invert(100%);
 }
 
 .game-over {
