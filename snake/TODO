@@ -22,10 +22,10 @@ Snake V1.0.0:
                 ✔ A button for a settings menu (reconfigure controls). @done(20-10-31 20:03)
                 ✔ A button for the help screen. @done(20-10-31 20:03)
             Implement the buttons:
-                ☐ Game pause screen.
-                    ☐ Design the pause screen.
-                    ☐ Implement the pause screen.
-                    ☐ Wire the pause button.
+                ✔ Game pause screen. @started(20-10-31 21:07) @done(20-10-31 21:50) @lasted(43m14s)
+                    ✔ Design the pause screen. @started(20-10-31 21:07) @done(20-10-31 21:13) @lasted(6m27s)
+                    ✔ Implement the pause screen. @started(20-10-31 21:16) @done(20-10-31 21:24) @lasted(8m1s)
+                    ✔ Wire the pause button. @started(20-10-31 21:24) @done(20-10-31 21:48) @lasted(24m51s)
                 ✔ Fullscreen mode. @started(20-10-31 20:15) @done(20-10-31 20:37) @lasted(22m42s)
                 ✔ Restart button. @started(20-10-31 19:26) @done(20-10-31 20:03) @lasted(37m34s)
                 ☐ Help screen.
@@ -33,6 +33,7 @@ Snake V1.0.0:
                     ☐ Implement the help screen.
                     ☐ Wire the help button.
                 ☐ Settings screen.
+        ☐ Add the restart icon next to the restart button in the death screen.
         ✔ Cleanup the JavaScript code. @started(20-10-30 18:34) @done(20-10-31 00:41) @lasted(6h7m39s)
     
     Recommended:
