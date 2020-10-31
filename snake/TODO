@@ -39,6 +39,8 @@ Snake V1.0.0:
     Recommended:
         ☐ Use webpack to pack the game's modules into a single file.
         ☐ Make the design adaptive for difference resolutions.
+        ☐ The toolbar buttons could be displayed over the display screens.
+            ☐ For the death screen, the pause button would be disabled.
     
     Simple but optional:
         ☐ Make some text unselectable.
