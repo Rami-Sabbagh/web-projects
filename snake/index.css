@@ -94,6 +94,11 @@ body {
   background-color: #FFFB;
   filter: invert(100%);
 }
+.game-bar button:disabled {
+  cursor: default;
+  background-color: #0000;
+  filter: opacity(0.5);
+}
 
 .game-over {
   position: absolute;

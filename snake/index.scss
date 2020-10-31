@@ -84,6 +84,12 @@ body {
             background-color: #FFFB;
             filter: invert(100%);
         }
+
+        &:disabled {
+            cursor: default;
+            background-color: #0000;
+            filter: opacity(0.5);
+        }
     }
 }
 
