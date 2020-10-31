@@ -93,13 +93,13 @@ function toggleGamePause() {
     
     if (active) {
         pauseButton.classList.remove("icon-pause");
-        pauseButton.classList.add("icon-play");
+        setTimeout(() => pauseButton.classList.add("icon-play"), 50);
 
         game.pause();
         timer.pause();
     } else {
         pauseButton.classList.remove("icon-play");
-        pauseButton.classList.add("icon-pause");
+        setTimeout(() => pauseButton.classList.add("icon-pause"), 50);
         
         game.resume();
         timer.resume();
