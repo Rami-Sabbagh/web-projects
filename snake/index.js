@@ -111,7 +111,7 @@ if (document.fullscreenEnabled) { fullscreenButton.removeAttribute("disabled"); 
 document.onfullscreenchange = updateFullscreenButton;
 
 //==-- Toolbar buttons --//
-restartButton.onclick = startGame;
+restartButton.onclick = () => { game.reset(); setTimeout(startGame, 200); };
 fullscreenButton.onclick = toggleFullscreen;
 
 //==-- Death screen --==//
