@@ -1,3 +1,5 @@
+@use 'scss/icons';
+
 //https://fonts.google.com/specimen/Roboto+Mono?sidebar.open=true&selection.family=Roboto+Mono:wght@400;500|Roboto:wght@100;400;500
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto:wght@100;400;500&display=swap');
 
@@ -45,11 +47,43 @@ body {
     box-shadow: 0 2px 1px 0px rgba(0,0,0, 0.2);
 
     .score-label {
-        flex: 1
+        flex: 1;
+    }
+
+    .timer-label {
+        flex: 1;
+
+        display: flex;
+        justify-content: end;
     }
     
     .score-value, .timer-value {
         font-weight: 400;
+    }
+
+    .buttons-container {
+        display: flex;
+    }
+
+    button {
+        cursor: pointer;
+
+        width: 30px;
+        height: 30px;
+
+        border: none;
+        background-color: #0000;
+
+        transition: 100ms;
+
+        &:hover {
+            background-color: #0002;
+        }
+
+        &:active {
+            background-color: #FFFB;
+            filter: invert(100%);
+        }
     }
 }
 

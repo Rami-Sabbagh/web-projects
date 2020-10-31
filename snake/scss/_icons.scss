@@ -1,0 +1,34 @@
+.icon {
+    
+    background-position: 50%;
+    background-repeat: no-repeat;
+
+    &-cog {
+        background-image: url("svg/cog.svg");
+        background-size: 60%;
+    }
+    &-fullscreen-exit {
+        background-image: url("svg/fullscreen-exit.svg");
+    }
+    &-fullscreen {
+        background-image: url("svg/fullscreen.svg");
+    }
+    &-help {
+        background-image: url("svg/help.svg");
+        background-size: 60%;
+    }
+    &-pause {
+        background-image: url("svg/pause.svg");
+    }
+    &-play {
+        background-image: url("svg/play.svg");
+    }
+    &-reload {
+        background-image: url("svg/reload.svg");
+        background-size: 70%;
+    }
+    &-timer-outline {
+        background-image: url("svg/timer-outline.svg");
+        background-size: 70%;
+    }
+}
