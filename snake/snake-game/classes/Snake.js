@@ -27,7 +27,10 @@ export default class Snake {
 
     //==-- Contructor --==//
 
-    //- tileMap (TileMap): The map which the snake belongs to.
+    /**
+     * Constructs a new Snake instance.
+     * @param {TileMap} tileMap The map which the snake belongs to.
+     */
     constructor(tileMap) {
         this._tileMap = tileMap;
     }
@@ -43,14 +46,19 @@ export default class Snake {
 
     //==-- Callbacks --==//
 
-    //Called when the snake dies (when die() is called).
+    /**
+     * Called when the snake dies (when die() is called).
+     */
     onDeath() { }
 
     //==-- Methods --==//
 
-    //- x (Number): The x coordinates to spawn the snake's head at.
-    //- y (Number): The y coordinates to spawn the snake's head at.
-    //- length(Number): The initial length of the snake, defaults to (5).
+    /**
+     * Respawns the snake.
+     * @param {number} x The x coordinates to spawn the snake's head at.
+     * @param {number} y The y coordinates to spawn the snake's head at.
+     * @param {number} length The initial length of the snake, defaults to (5).
+     */
     respawn(x, y, length = 5) {
         if (this.length !== 0) { this.destroy(); }
 
@@ -66,7 +74,9 @@ export default class Snake {
         this._lastMovementDirection = 1;
     }
 
-    //Destroys the snake and removes it from existance.
+    /**
+     * Destroys the snake and removes it from existance.
+     */
     destroy() {
         this.pause(); //Make sure the snake is paused first.
 
@@ -80,7 +90,9 @@ export default class Snake {
         this._lastMovementDirection = undefined;
     }
 
-    //Resumes the snake's movement.
+    /**
+     * Resumes the snake's movement.
+     */
     resume() {
         if (this._pieces.length === 0) { throw new Error("Can't resume the snake's movement while it's not in existance (respawn it first)."); }
         //If it was already active, pause it, and reactivate it (so the interval timeout is updated).
@@ -92,7 +104,9 @@ export default class Snake {
         this._movementInterval = setInterval(this._movementHandler, this._movementTimeout);
     }
 
-    //Pauses the snake's movement.
+    /**
+     * Pauses the snake's movement.
+     */
     pause() {
         //Already not active / paused.
         if (this._movementInterval === undefined) { return; }
@@ -101,17 +115,24 @@ export default class Snake {
         this._movementInterval = undefined;
     }
 
-    //Kills the snake, by pausing it, and calling the onDeath callback.
+    /**
+     * Kills the snake, by pausing it, and calling the onDeath callback.
+     */
     die() {
         this.pause();
         this.onDeath();
     }
 
-    //Tells the snake to grow by a specific amount, takes the same amount of movements to be applied.
-    //(Takes 2 movements to grow by 2, etc...).
+    /**
+     * Tells the snake to grow by a specific amount, takes the same amount of movements to be applied.
+     * (Takes 2 movements to grow by 2, etc...).
+     * @param {number} amount The specific amount to grow by.
+     */
     grow(amount=1) { this._grow += amount; }
 
-    //Makes the snake move by a single step.
+    /**
+     * Makes the snake move by a single step.
+     */
     move() {
         this._lastMovementDirection = this._direction;
 

@@ -13,6 +13,7 @@ let keyboardBindings = {
 export default class StandardKeyboardControls {
 
     //==-- Private properties --==//
+    
     _snake = undefined;
 
     //==-- Constructor --==//
