@@ -1,4 +1,5 @@
-import Entity from './Entity.js';
+import Entity from './Entity';
+import Snake from './Snake';
 
 //Represents a piece of the snake in the game.
 export default class SnakePiece extends Entity {
@@ -12,7 +13,7 @@ export default class SnakePiece extends Entity {
     //==-- Methods --==//
 
     //--(overrides Entity)--//
-    consumed(snake) {
+    consumed(snake: Snake): boolean {
         return true; //reject the consumtion.
     }
 }

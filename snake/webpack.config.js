@@ -1,6 +1,6 @@
 module.exports = {
     mode: 'production',
-    entry: './index.js',
+    entry: './src/index.ts',
     output: {
         filename: 'index.bundle.js',
         path: __dirname
@@ -8,16 +8,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-proposal-class-properties']
-                    }
-                }
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: ['ts-loader']
             }
         ]
+    },
+    resolve: {
+        extensions: ['.wasm', '.mjs', '.js', '.json', '.ts']
     }
 }

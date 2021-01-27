@@ -1,49 +1,54 @@
 export default class Gamepad2Keyboard {
-    _gamepads = {};
-    _gamepadZone = 0.8;
+    private readonly gamepads: {[gamepadId: string]: Gamepad} = {};
+    private readonly gamepadZone = 0.8;
     
     constructor() {
-        window.addEventListener("gamepadconnected", ev => {
+
+        window.addEventListener("gamepadconnected", (event: Event) => {
+            const ev = event as GamepadEvent;
+
             let gamepad = ev.gamepad;
             console.log("Gamepad Connected", gamepad);
-            this._gamepads[gamepad.id] = gamepad;
+            this.gamepads[gamepad.id] = gamepad;
         })
         
-        window.addEventListener("gamepaddisconnected", ev => {
+        window.addEventListener("gamepaddisconnected", (event: Event) => {
+            const ev = event as GamepadEvent;
+
             let gamepad = ev.gamepad;
             console.log("Gamepad Disconnected", gamepad);
-            delete this._gamepads[gamepad.id];
+            delete this.gamepads[gamepad.id];
         })
 
-        let updateLoopHandler = (dt) => {
+        let updateLoopHandler: FrameRequestCallback = (dt: number) => {
             this.updateControllers();
             requestAnimationFrame(updateLoopHandler);
         }
         requestAnimationFrame(updateLoopHandler);
     }
 
-    updateControllers() {
-        for (let gamepadId in this._gamepads) {
-            let gamepad = this._gamepads[gamepadId];
+    updateControllers(): void {
+        for (let gamepadId in this.gamepads) {
+            let gamepad = this.gamepads[gamepadId];
 
             let axisX = gamepad.axes[0];
             let axisY = gamepad.axes[1];
 
-            if (axisX > this._gamepadZone) {
+            if (axisX > this.gamepadZone) {
                 this.emulateKeyboardButton("ArrowRight");
-            } else if (axisX < -this._gamepadZone) {
+            } else if (axisX < -this.gamepadZone) {
                 this.emulateKeyboardButton("ArrowLeft");
             }
 
-            if (axisY > this._gamepadZone) {
+            if (axisY > this.gamepadZone) {
                 this.emulateKeyboardButton("ArrowDown");
-            } else if (axisY < -this._gamepadZone) {
+            } else if (axisY < -this.gamepadZone) {
                 this.emulateKeyboardButton("ArrowUp");
             }
         }
     }
 
-    emulateKeyboardButton(key) {
+    emulateKeyboardButton(key: string) {
         document.dispatchEvent(new KeyboardEvent("keydown", {key: key}));
         document.dispatchEvent(new KeyboardEvent("keyup", {key: key}));
     }

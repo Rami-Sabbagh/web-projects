@@ -1,19 +1,17 @@
-import TileMap from './classes/TileMap.js';
-import Snake from './classes/Snake.js';
-import Fruit from './classes/Fruit.js';
+import TileMap from './classes/TileMap';
+import Snake from './classes/Snake';
+import Fruit from './classes/Fruit';
 
 export default class Game {
 
-    //==-- Public Fields --==//
+    //==-- Properties --==//
 
-    startingSnakeLength = undefined;
+    readonly startingSnakeLength: number;
+    readonly tileMap: TileMap;
+    readonly fruitsCount: number;
+    readonly snake: Snake;
 
-    //==-- Private Fields --==//
-
-    _tileMap = undefined;
-    _fruitsCount = undefined;
-    _snake = undefined;
-    _fruitConsumtionHandler = undefined;
+    private readonly fruitConsumtionHandler: () => void;
 
     //==-- Constructor --==//
 
@@ -24,14 +22,14 @@ export default class Game {
      * @param {number} fruitsCount The number of fruits in the game.
      * @param {number} startingSnakeLength The starting length of the snake.
      */
-    constructor(width, height, fruitsCount = 5, startingSnakeLength = 5) {
-        this._tileMap = new TileMap(width, height);
-        this._fruitsCount = fruitsCount;
+    constructor(width: number, height: number, fruitsCount: number = 5, startingSnakeLength: number = 5) {
+        this.tileMap = new TileMap(width, height);
+        this.fruitsCount = fruitsCount;
         this.startingSnakeLength = startingSnakeLength;
 
-        this._snake = new Snake(this._tileMap);
-        this._snake.onDeath = () => this.onDeath();
-        this._fruitConsumtionHandler = () => {
+        this.snake = new Snake(this.tileMap);
+        this.snake.onDeath = () => this.onDeath();
+        this.fruitConsumtionHandler = () => {
             this.spawnFruit();
             this.onFruitConsumed();
         };
@@ -39,28 +37,26 @@ export default class Game {
 
     //==-- Getters and Setters --==//
 
-    get element() { return this._tileMap.element; }
-    get tileMap() { return this._tileMap; }
-    get snake() { return this._snake; }
+    get element(): HTMLElement { return this.tileMap.element; }
 
     //==-- Callbacks --==//
 
     /**
      * Called when the snake dies.
      */
-    onDeath() { }
+    onDeath(): void { }
 
     /**
      * Called when the fruit is consumed.
      */
-    onFruitConsumed() { }
+    onFruitConsumed(): void { }
 
     //==-- Methods --==//
 
     /**
      * Setups and starts/restarts the game.
      */
-    start() {
+    start(): void {
         this.setup();
         this.resume();
     }
@@ -68,23 +64,23 @@ export default class Game {
     /**
      * Pauses the game.
      */
-    pause() {
-        this._snake.pause();
+    pause(): void {
+        this.snake.pause();
     }
 
     /**
      * Starts/Resumes the game.
      */
-    resume() {
-        if (!this._snake.spawned) { throw new Error("The snake is not spawned for the game to resume, call .setup() first before resuming the game."); }
-        this._snake.resume();
+    resume(): void {
+        if (!this.snake.spawned) { throw new Error("The snake is not spawned for the game to resume, call .setup() first before resuming the game."); }
+        this.snake.resume();
     }
 
     /**
      * Setups the game's entities.
      */
-    setup() {
-        if (this._snake.spawned) { this.reset(); }
+    setup(): void {
+        if (this.snake.spawned) { this.reset(); }
         this.spawnSnake();
         this.spawnStartingFruits();
     }
@@ -92,18 +88,18 @@ export default class Game {
     /**
      * Resets the game's state, unspawning all the entities.
      */
-    reset() {
-        this._snake.destroy();
-        this._tileMap.clearEntities();
+    reset(): void {
+        this.snake.destroy();
+        this.tileMap.clearEntities();
     }
 
     /**
      * Spawns/Respawns the game's snake.
      */
-    spawnSnake() {
-        this._snake.respawn(
-            Math.floor((this._tileMap.width + this.startingSnakeLength)/2),
-            Math.floor(this._tileMap.height/2),
+    spawnSnake(): void {
+        this.snake.respawn(
+            Math.floor((this.tileMap.width + this.startingSnakeLength)/2),
+            Math.floor(this.tileMap.height/2),
             this.startingSnakeLength
         );
     }
@@ -111,8 +107,8 @@ export default class Game {
     /**
      * Spawns the starting fruits.
      */
-    spawnStartingFruits() {
-        for (let i = 0; i < this._fruitsCount; i++) {
+    spawnStartingFruits(): void {
+        for (let i = 0; i < this.fruitsCount; i++) {
             this.spawnFruit();
         }
     }
@@ -120,7 +116,7 @@ export default class Game {
     /**
      * Spawns a fruit at a random empty location.
      */
-    spawnFruit() {
+    spawnFruit(): void {
         let x = Math.floor(Math.random() * this.tileMap.width);
         let y = Math.floor(Math.random() * this.tileMap.height);
 
@@ -130,7 +126,7 @@ export default class Game {
         }
 
         let fruit = new Fruit();
-        fruit.onConsumtion = this._fruitConsumtionHandler;
+        fruit.onConsumtion = this.fruitConsumtionHandler;
         this.tileMap.addEntity(fruit, x, y);
     }
 }

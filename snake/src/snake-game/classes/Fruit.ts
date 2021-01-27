@@ -1,4 +1,5 @@
-import Entity from './Entity.js';
+import Entity from './Entity';
+import Snake from './Snake';
 
 //Represents a fruit in the game.
 export default class Fruit extends Entity {
@@ -16,7 +17,7 @@ export default class Fruit extends Entity {
     //==-- Methods --==//
 
     //--(overrides Entity)--//
-    consumed(snake) {
+    consumed(snake: Snake): boolean {
         this.onConsumtion();
         snake.grow();
         return false;
