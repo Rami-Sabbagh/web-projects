@@ -37,7 +37,8 @@ Snake V1.0.0:
         ✔ Cleanup the JavaScript code. @started(20-10-30 18:34) @done(20-10-31 00:41) @lasted(6h7m39s)
     
     Recommended:
-        ☐ Use webpack to pack the game's modules into a single file.
+        ✔ Use webpack to pack the game's modules into a single file. @done(21-01-27 17:07) @lasted(1h)
+        ✔ Port the code into TypeScript. @done(21-01-27 17:07) @lasted(5h)
         ☐ Make the design adaptive for difference resolutions.
         ☐ The toolbar buttons could be displayed over the display screens.
             ☐ For the death screen, the pause button would be disabled.
